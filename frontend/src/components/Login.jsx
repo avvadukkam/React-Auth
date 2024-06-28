@@ -47,8 +47,20 @@ const Login = () => {
   console.log('Rendering Login component');
 
 
-  const handleGoogleSuccess = (response) => {
+  /*const handleGoogleSuccess = (response) => {
     console.log(response);
+  };*/
+  const handleGoogleSuccess = async (response) => {
+    try {
+      const res = await axios.post('http://localhost:5000/api/users/google-login', {
+        tokenId: response.credential,
+      });
+      localStorage.setItem('token', res.data.token);
+      toast.success('Logged in successfully with Google!');
+      navigate('/dashboard');
+    } catch (error) {
+      toast.error('Google Sign-In failed. Please try again.');
+    }
   };
 
   const handleGoogleFailure = (error) => {
@@ -108,7 +120,6 @@ const Login = () => {
         <Divider> or continue with</Divider>
         <SocialButtons>
           <GoogleLogin
-            clientId = '430143177887-r4b87kagfjhv0ofsfoqq29k5k2fpcer1.apps.googleusercontent.com'
             onSuccess={handleGoogleSuccess}
             onFailure={handleGoogleFailure}
             style={{ width: "100%", marginBottom: "10px" }}

@@ -12,15 +12,15 @@ const clientId = '430143177887-r4b87kagfjhv0ofsfoqq29k5k2fpcer1.apps.googleuserc
 const App = () => {
   return (
     <GoogleOAuthProvider clientId={clientId}>
-    <Router>
-      <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute> } />
-        <Route path="*" element={<Navigate to="/login" />} />
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute> } />
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+      </Router>
     </GoogleOAuthProvider>
   );  
 };
